@@ -21,59 +21,58 @@ while (keepGoing)
     {
         Console.WriteLine("Presenting our full class:");
         AllStudents();
-        break;
     }
     else
     {
         student = int.Parse(userChoice) - 1;
+
+        while (presentingInfo)
+        {
+            if (student > 17 || student < 0)
+            {
+                Console.WriteLine("Invalid student number, please choose between 1-17");
+                break;
+            }
+            Console.WriteLine($"Student #{student + 1} is {names[student]}. Would you like to know their hometown, favorite food, or both?"); // separate this to re-ask?
+
+            string choice = Console.ReadLine().ToLower().Trim();
+
+            if (choice == "hometown" || choice == "home")
+            {
+                Console.WriteLine($"{names[student]} is from {hometowns[student]}.");
+                break;
+            }
+            else if (choice == "favorite food" || (choice == "food"))
+            {
+                Console.WriteLine($"{names[student]}'s favorite food is {foods[student]}.");
+                break;
+            }
+            else if (choice == "both")
+            {
+                Console.WriteLine($"{names[student]} is from {hometowns[student]} and their favorite food is {foods[student]}.");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("That is not a valid category; please choose from 'hometown' or 'favorite food'");
+                continue;
+            }
+        }
     }
-    while (presentingInfo)
+    while (true)
     {
-        if (student > 17 || student < 0)
+        Console.WriteLine("Would you like to select another student? Reply 'y' continue, or press any key to exit.");
+        if (Console.ReadLine().ToLower().Trim() == "y")
         {
-            Console.WriteLine("Invalid student number, please choose between 1-17");
-            break;
-        }
-        Console.WriteLine($"Student #{student + 1} is {names[student]}. Would you like to know their hometown, favorite food, or both?"); // separate this to re-ask?
-
-        string choice = Console.ReadLine().ToLower().Trim();
-
-        if (choice == "hometown" || choice == "home")
-        {
-            Console.WriteLine($"{names[student]} is from {hometowns[student]}.");
-            break;
-        }
-        else if (choice == "favorite food" || (choice == "food"))
-        {
-            Console.WriteLine($"{names[student]}'s favorite food is {foods[student]}.");
-            break;
-        }
-        else if (choice == "both")
-        {
-            Console.WriteLine($"{names[student]} is from {hometowns[student]} and their favorite food is {foods[student]}.");
             break;
         }
         else
         {
-            Console.WriteLine("That is not a valid category; please choose from 'hometown' or 'favorite food'");
-            continue;
+            Console.WriteLine("Thanks for visiting!");
+            keepGoing = false;
+            break;
         }
     }
-
-while (true) // why do i need this 
-{
-    Console.WriteLine("Would you like to select another student? Reply 'y' continue, or press any key to exit.");
-    if (Console.ReadLine().ToLower().Trim() == "y")
-    {
-        break;
-    }
-    else
-    {
-        Console.WriteLine("Thanks for visiting!");
-        keepGoing = false;
-        break;
-    }
-}
 }
 
 static void AllStudents()
