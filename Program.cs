@@ -17,7 +17,7 @@ while (keepGoing)
 
     string userChoice = Console.ReadLine();
 
-    if (userChoice == "all" || userChoice == "ALL" || userChoice == "All")
+    if (userChoice.ToLower().Contains("all"))
     {
         Console.WriteLine("Presenting our full class:");
         AllStudents();
@@ -28,7 +28,7 @@ while (keepGoing)
 
         while (presentingInfo)
         {
-            if (student > 17 || student < 0)
+            if (student >= names.Length || student < 0 )
             {
                 Console.WriteLine("Invalid student number, please choose between 1-17");
                 break;
@@ -37,12 +37,12 @@ while (keepGoing)
 
             string choice = Console.ReadLine().ToLower().Trim();
 
-            if (choice == "hometown" || choice == "home")
+            if (choice.Contains("home"))
             {
                 Console.WriteLine($"{names[student]} is from {hometowns[student]}.");
                 break;
             }
-            else if (choice == "favorite food" || (choice == "food"))
+            else if (choice.Contains("food"))
             {
                 Console.WriteLine($"{names[student]}'s favorite food is {foods[student]}.");
                 break;
